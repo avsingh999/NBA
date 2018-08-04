@@ -1,0 +1,27 @@
+.fetaured_item {
+    position:relative;
+}
+
+.fetaured_item a{
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    text-decoration: navajowhite;
+    right: 0px;
+}
+
+.fetaured_image {
+    height: 400px;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+}
+
+.fetaured_caption {
+    color: #ffffff;
+    top: 0px;
+    width: 100%;
+    padding: 20px;
+    font-weight: 300;
+    font-size: 29px;
+    box-sizing: border-box;
+}
