@@ -5,6 +5,7 @@ import { URL } from '../../../../config';
 import style from '../../article.css';
 import Header from './header';
 import Body from './body';
+import { firebaseDB, firebaseTeams, firebaselooper } from '../../../../firebase';
 
 class NewArticle extends Component {
     state ={
@@ -13,17 +14,30 @@ class NewArticle extends Component {
     }
     
     componentWillMount(){
-        axios.get(`${URL}/articles?id=${this.props.match.params.id}`)
-        .then(response => {
-            let article = response.data[0];
-            axios.get(`${URL}/teams?id=${article.team}`)
-            .then( response => {
+
+        firebaseDB.ref(`articles/${this.props.match.params.id}`).once('value')
+        .then((snapshot)=>{
+            let article = snapshot.val();
+            firebaseTeams.orderByChild("id").equalTo(article.team).once('value')
+            .then((snapshot)=>{
+                const team  = firebaselooper(snapshot);
                 this.setState({
                     article,
-                    team:response.data
+                    team
                 })
             })
         })
+        // axios.get(`${URL}/articles?id=${this.props.match.params.id}`)
+        // .then(response => {
+        //     let article = response.data[0];
+        //     axios.get(`${URL}/teams?id=${article.team}`)
+        //     .then( response => {
+        //         this.setState({
+        //             article,
+        //             team:response.data
+        //         })
+        //     })
+        // })
     }
 
 
