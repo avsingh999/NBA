@@ -18,10 +18,10 @@ const firebaseVideos = firebaseDB.ref('videos');
 const firebaselooper = (snapshot) => {
 
     const data = [];
-    console.log(snapshot.val())
+    // console.log(snapshot.val())
 
     snapshot.forEach((childSnapshot)=> {
-        console.log("&&&&&&&&&&&7")
+        // console.log("&&&&&&&&&&&7")
         data.push({
             ...childSnapshot.val(),
             id:childSnapshot.key

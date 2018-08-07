@@ -6,7 +6,8 @@ const CardInfo = (props) => {
 
    const teamName = (teams, team) => {
        let data = teams.find((item)=>{
-           return item.id === team
+           console.log("---> "+team+" "+item.id)
+           return item.id == team
        })
        if(data){
            return data.name

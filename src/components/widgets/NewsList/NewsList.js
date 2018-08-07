@@ -8,6 +8,7 @@ import { URL } from '../../../config';
 import style from './NewsList.css';
 import Button from '../Button/button.js';
 import CardInfo from '../cardInfo/cardInfo';
+import { firebaseArticles, firebaselooper, firebaseTeams } from '../../../firebase';
 
 class NewsList extends Component {
 
@@ -24,27 +25,47 @@ class NewsList extends Component {
     }
     request = (start, end) => {
         if(this.state.teams.length<1){
-            axios.get(`${URL}/teams`)
-            .then(response => {
+            firebaseTeams.once('value')
+            .then((snapshot)=>{
+                const teams = firebaselooper(snapshot);
                 this.setState({
-                    teams:response.data
+                    teams
                 })
             })
+
+            // axios.get(`${URL}/teams`)
+            // .then(response => {
+            //     this.setState({
+            //         teams:response.data
+            //     })
+            // })
         }
 
-        axios.get(`${URL}/articles?_start=${start}&_end=${end}`)
-        .then(response => {
+        firebaseArticles.orderByChild("id").startAt(start).endAt(end).once("value")
+        .then((snapshot)=>{
+            const articles = firebaselooper(snapshot);
             this.setState({
-                item:[...this.state.item,...response.data],
-                start,
-                end
-            })
+                            item:[...this.state.item,...articles],
+                            start,
+                            end
+                        })
         })
+        .catch(e => {
+            console.log(e)
+        })
+    //     axios.get(`${URL}/articles?_start=${start}&_end=${end}`)
+    //     .then(response => {
+    //         this.setState({
+    //             item:[...this.state.item,...response.data],
+    //             start,
+    //             end
+    //         })
+    //     })
     }
 
     loadmore = () => {
         let end = this.state.end+this.state.amount;
-        this.request(this.state.end, end);
+        this.request(this.state.end+1, end);
     }
     renderNews = (type) => {
         let template = null;

@@ -10,7 +10,7 @@ const home = () =>{
             amount={4}
         />
         
-        {/* <NewsList
+        <NewsList
             type="card"
             loadmore={true}
             start={3}
@@ -22,7 +22,7 @@ const home = () =>{
             loadmore={true}
             start={3}
             amount={3}
-        /> */}
+        />
         
         </div>
     )
