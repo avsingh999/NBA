@@ -3,19 +3,57 @@
     margin: 0 auto;
     height: 100vh;
     padding-top: 60px;
+    /* box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); */
+
 }
+.logContainer2{
+    width: 80%;
+    margin: 0 auto;
+    height: 400px;
+    padding-top: 50px;
+    background: #0303034b;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+}
+
 .logContainer h2 {
     font-weight: 300;
     text-align: center;
     font-size: 40px;
+    color: #fff;
 
 }
 
 .logContainer input {
     font-size: 20px;
-    width: 100%;
-    margin-top: 10px;
+    width: 70%;
+    margin: 1%;
+    margin-left: 15%;
     padding: 12px 10px;
     box-sizing: border-box;
     font-weight: 400;
+    border: 2px solid rgb(243, 243, 243);
+
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+}
+.logContainer button {
+    background: #156ed4;
+    font-size: 15px;
+    padding: 10px;
+    color: #ffffff;
+    margin: 20px 0 20px 20px;
+    width: 24%;
+    margin-left: 18%;
+    height: 40px;
+    background-color: white;
+
+    color: black;
+    border: 2px solid rgb(248, 236, 236);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.error {
+    background: #156ed4;
+    color: #fff;
+    margin-top: 40%;
 }
