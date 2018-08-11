@@ -7,7 +7,7 @@ class Layout extends Component{
         showNav:false
     }
     toggleSideNav = (action) =>{
-        console.log(action);
+        // console.log(action);
         this.setState({
             showNav:action
         })
@@ -16,6 +16,7 @@ class Layout extends Component{
         return(
             <div>
                 <Header
+                user={this.props.user}
                  showNav={this.state.showNav}
                  onOpenNav={() => this.toggleSideNav(true)}
                  onHideNav = {() => this.toggleSideNav(false)}

@@ -1,59 +1,114 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import FontAwesome from 'react-fontawesome';
-
+import {firebase}from '../../../firebase';
 import style from './sideNav.css';
 
-const SideNavItems = () => {
+const SideNavItems = (props) => {
     const Items = [
         {
             type: style.option,
             icon: 'home',
             text: 'Home',
-            link: '/'
+            link: '/',
+            login:''
         },
         {
             type: style.option,
             icon: 'file-text-o',
             text: 'News',
-            link: '/news'
+            link: '/news',
+            login:''
         },
         {
             type: style.option,
             icon: 'play',
             text: 'Videos',
-            link: '/videos'
+            link: '/videos',
+            login:''
+        },
+        {
+            type: style.option,
+            icon: 'sign-in',
+            text: 'DashBoard',
+            link: '/dashboard',
+            login:false 
         },
         {
             type: style.option,
             icon: 'sign-in',
             text: 'Sign in',
-            link: '/sign-in'
+            link: '/sign-in',
+            login:true
         },
         {
             type: style.option,
             icon: 'sign-out',
             text: 'Sign out',
-            link: '/sign-out'
+            link: '/sign-out',
+            login:false
         },
         {
             type: style.option,
             icon: 'user',
             text: 'About',
-            link: '/about'
+            link: '/about',
+            login:''
         }    
     ]
+
+    const element = (item,i) => (
+        <div key={i} className={item.type}>
+        <Link to={item.link}>
+            <FontAwesome name={item.icon}/>
+            {item.text}
+        </Link>
+     </div>
+    )
+
+    const restricted = (item, i) => {
+        let template = null;
+        console.log(props.user)
+
+        if(props.user === null && item.login){
+            template = element(item, i)
+            
+
+        }
+
+        if(props.user !== null && !item.login){
+            // console.log("**************")
+            if(item.link === '/sign-out'){
+                template = (
+                    <div key={i} className={item.type}
+                    onClick = {() => {
+                    firebase.auth().signOut()
+                    .then(() => {
+                        props.history.push('/')
+                    })
+                    }}
+                     >
+                        <FontAwesome name={item.icon}/>
+                        {item.text}
+                    </div>
+                )
+                
+            }
+            else{
+                template = element(item,i)
+            }
+        }
+        return template;
+    }
+
 
     const showItems = () =>{
         return Items.map((item,i)=>{
            return(
-            <div key={i} className={item.type}>
-            <Link to={item.link}>
-                
-                <FontAwesome name={item.icon}/>
-                {item.text}
-            </Link>
-        </div>
+           item.login!== '' ?
+           restricted(item, i)
+           :
+           element(item,i)
            )
         })
     }
@@ -62,10 +117,9 @@ const SideNavItems = () => {
     return(
         <div>
             {showItems()}
-            
         </div>
         
     )
 }
 
-export default SideNavItems ;
+export default withRouter(SideNavItems) ;

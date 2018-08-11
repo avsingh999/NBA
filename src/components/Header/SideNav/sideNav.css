@@ -1,9 +1,10 @@
 .option {
     font-weight: 300;
-    font-size: 13px;
-    color: #fff;
+    font-size: 17px;
+    color: rgb(0, 0, 0);
     padding: 12px;
-    border-top: 1px solid #fff;
+    border-top: 1px solid rgb(248, 245, 245);
+    text-shadow: 2px 2px #cccaca;
 }
 
 .option a {
@@ -12,6 +13,6 @@
 }
 
 .option span {
-    color: white;
+    color: rgb(2, 2, 2);
     margin-right: 10px;
 }

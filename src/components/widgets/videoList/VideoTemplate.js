@@ -5,7 +5,7 @@ import Cardinfo from '../cardInfo/cardInfo';
 
 const VideoTemplate = (props) =>{
     // console.log("$$$$$$$$$$$$$$$$$")
-    console.log(props)
+    // console.log(props)
     return props.data.map((item,i)=>{
         return(<Link to={`/videos/${item.id}`} key={item.id}>
             <div className={style.videoitem_wrapper}>

@@ -10,12 +10,6 @@ class NewsSlider extends Component {
 
     
     componentWillMount() {
-        // axios.get(`http://localhost:3004/articles?_start=${this.props.start}&_end=${this.props.amount}`)
-        // .then(response => {
-        //     this.setState({
-        //         news:response.data
-        //     })
-        // })
         console.log("come in")
         firebaseArticles.limitToFirst(3).once('value')
         .then((snapshot)=>{
@@ -28,7 +22,7 @@ class NewsSlider extends Component {
     }
     
     render(){
-        console.log(this.state.news)
+        // console.log(this.state.news)
         return(
             <div><Slider_Template data={this.state.news} type={this.props.type}/></div>
         )

@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
-
-// import { CSSTransition, TransitionGroup } from 'react-transition-group';
-
-// import { Link } from 'react-router-dom';
-import axios  from 'axios';
-import { URL } from '../../../config';
 import Button from '../Button/button.js';
-// import CardInfo from '../cardInfo/cardInfo';
 import style from './videoList.css' ;    
 import VideoTemplate from './VideoTemplate';
 import { firebaseArticles, firebaselooper, firebaseTeams, firebaseVideos } from '../../../firebase';
@@ -80,7 +73,6 @@ class VideoList extends Component {
     render(){
         return(
             <div className={style.VideoList_wrapper}>
-                {this.renderTitle()}
                 {this.renderVideos()}
                 {this.renderButton()}
             </div>

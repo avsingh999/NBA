@@ -30,6 +30,12 @@ const firebaselooper = (snapshot) => {
     return data
 }
 
+firebaseArticles.once('value')
+.then((snapshot)=>{
+    // const articles = firebaselooper(snapshot);
+    console.log(snapshot.val())
+
+})
 
 export {
     firebase,

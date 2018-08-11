@@ -45,6 +45,8 @@ class SignIn extends Component {
     }
 
     updateForm = (element) => {
+        console.log("OOOOOOOOOOOOOOOOOOOO")
+        console.log(element)
         const newFormdata = {
             ...this.state.formdata
         }
@@ -52,7 +54,6 @@ class SignIn extends Component {
             ...newFormdata[element.id]
         }
         newElement.value = element.event.target.value;
-        newFormdata[element.id] = newElement;
         if(element.blur) {
             let validData = this.validate(newElement);
             console.log(validData)

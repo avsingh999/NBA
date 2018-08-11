@@ -33,12 +33,6 @@ class NewsList extends Component {
                 })
             })
 
-            // axios.get(`${URL}/teams`)
-            // .then(response => {
-            //     this.setState({
-            //         teams:response.data
-            //     })
-            // })
         }
 
         firebaseArticles.orderByChild("id").startAt(start).endAt(end).once("value")
@@ -53,14 +47,7 @@ class NewsList extends Component {
         .catch(e => {
             console.log(e)
         })
-    //     axios.get(`${URL}/articles?_start=${start}&_end=${end}`)
-    //     .then(response => {
-    //         this.setState({
-    //             item:[...this.state.item,...response.data],
-    //             start,
-    //             end
-    //         })
-    //     })
+
     }
 
     loadmore = () => {

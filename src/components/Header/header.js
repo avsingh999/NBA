@@ -12,7 +12,7 @@ const Header = (props) =>{
             
             onClick={props.onOpenNav}
             style={{
-                color:'#fff',
+                color:'#00',
                 padding:'10px',
                 cursor:'pointer'
                 
@@ -22,9 +22,12 @@ const Header = (props) =>{
 
     const logo =() => {
         return (
+            
             <Link to="/" className={style.logo}>
-                <img alt="nba logog" src="/images/nba_logo.png"/>
+                <img alt="nba logog" src="/images/nblogog.png"/>
             </Link>
+            // </div>
+            
         )
     }
 

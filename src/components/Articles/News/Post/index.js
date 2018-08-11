@@ -14,10 +14,13 @@ class NewArticle extends Component {
     }
     
     componentWillMount(){
-
+        console.log("OOOOOOOOOOOOOOOOOOOOOOOO")
+        console.log(this.props)
         firebaseDB.ref(`articles/${this.props.match.params.id}`).once('value')
         .then((snapshot)=>{
             let article = snapshot.val();
+            // console.log("^^^^^^^^^^^^^^^^^^^^^^^^^")
+            // console.log(snapshot.val())
             firebaseTeams.orderByChild("id").equalTo(article.team).once('value')
             .then((snapshot)=>{
                 const team  = firebaselooper(snapshot);
@@ -66,7 +69,7 @@ class NewArticle extends Component {
                         {article.body}
                     </div>
                 </div>
-                <Body/>
+                {/* <Body/> */}
             </div>
         )
     }

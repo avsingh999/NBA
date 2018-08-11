@@ -1,6 +1,10 @@
 .header{
-    background: #0f0f0f;
-    border-bottom: 1px solid #fff;
+    background: #fcfcfc;
+    height: 50px;
+
+    /* border-bottom: 2px solid rgb(230, 223, 223); */
+    box-shadow: 0 4px 4px 0 #e4e4e4, 0 6px 10px 0 #eeeeee;
+
 
 }
 .headerOpt {
@@ -9,7 +13,7 @@
 
 .logo{
     flex-grow: 1;
-    padding-top: 10px;
+    padding-top: 7px;
 }
 
 .logo img{
