@@ -5,12 +5,13 @@ import { URL } from '../../../../config';
 import style from '../../article.css';
 import Header from './header';
 import Body from './body';
-import { firebaseDB, firebaseTeams, firebaselooper } from '../../../../firebase';
+import { firebase, firebaseDB, firebaseTeams, firebaselooper } from '../../../../firebase';
 
 class NewArticle extends Component {
     state ={
         article:[],
-        team:[]
+        team:[],
+        ImageURL:''
     }
     
     componentWillMount(){
@@ -28,19 +29,20 @@ class NewArticle extends Component {
                     article,
                     team
                 })
+                this.getImageURL(article.image)
             })
         })
-        // axios.get(`${URL}/articles?id=${this.props.match.params.id}`)
-        // .then(response => {
-        //     let article = response.data[0];
-        //     axios.get(`${URL}/teams?id=${article.team}`)
-        //     .then( response => {
-        //         this.setState({
-        //             article,
-        //             team:response.data
-        //         })
-        //     })
-        // })
+       
+    }
+    getImageURL = (filename) => {
+
+        firebase.storage().ref('images')
+        .child(filename).getDownloadURL()
+        .then( url => {
+            this.setState({
+                ImageURL: url
+            })
+        })
     }
 
 
@@ -60,13 +62,17 @@ class NewArticle extends Component {
                     <h1>{article.title}</h1>
                     <div className={style.articleImage}
                         style={{
-                            background:`url('/images/articles/${article.image}')`
+                            background:`url('${this.state.ImageURL}')`
                         }}
                     >
                     
                     </div>
-                    <div className={style.articleText}>
-                        {article.body}
+                    <div className={style.articleText}
+                        dangerouslySetInnerHTML={{
+                            __html:article.body
+                        }}
+                    >
+                        {/* {article.body} */}
                     </div>
                 </div>
                 {/* <Body/> */}

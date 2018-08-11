@@ -23,7 +23,7 @@ const SliderTemplate = (props) => {
                     <div className={style.fetaured_item}>
                         <div className={style.fetaured_image}
                             style={{
-                                background:`url(../images/articles/${items.image})`
+                                background:`url(${items.image})`
                             }}
                         >
                        

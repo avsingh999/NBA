@@ -78,6 +78,8 @@ class Dashboard extends Component {
 
     updateForm = (element, content='') => {
         // console.log("________>"+element)
+        console.log("&&&&&&&&&&&&&&&(((((((()))))))))))))))")
+        console.log(this.props.history)
         const newFormdata = {
             ...this.state.formdata
         }
@@ -150,15 +152,16 @@ class Dashboard extends Component {
                 firebaseArticles.push(dataToSumbit)
                 .then( article => {
                     // alert(this.props.history)
-                    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+                    // console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
 
-                    this.props.history.push(`articles/${article.id}`)
+                    this.props.history.push(`/articles/${article.id}`)
+                    alert("SUCCESS")
                 }).catch(e=>{
                     this.setState({
                         postError:e.message
                     })
                 })
-            })
+            })   
 
 
         }
@@ -167,6 +170,7 @@ class Dashboard extends Component {
                 postError:'SOmething went wromg'
             })
         }
+        // this.props.history.push(`/articles/5`)
     }
 
     componentDidMount() {
@@ -226,6 +230,10 @@ class Dashboard extends Component {
             editorState
         })
     }
+    backfun = () => {
+        console.log("CLicke me")
+        this.props.history.push('/news')
+    }
 
     storeFilename = (filename) => {
         this.updateForm({id:'image'}, filename)
@@ -263,7 +271,17 @@ class Dashboard extends Component {
                     change={(element)=>this.updateForm(element)}
                     
                     />
+
+                    {/* <button > back </button> */}
                     { this.sumbitButtons() }
+
+                    <div onClick = {()=>this.backfun()} style={{
+                        cursor:'pointer',
+                        background:'blue',
+                        width:'6%',
+                        color:'white'
+
+                    }}> BAck</div>
 
                 </form>
                 
