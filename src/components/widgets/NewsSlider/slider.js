@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Slider_Template from './Slider_Template'
 import { firebase, firebaselooper, firebaseArticles } from '../../../firebase';
-import { resolve } from 'path';
-import { request } from 'https';
+
 
 class NewsSlider extends Component {
 
@@ -32,7 +31,6 @@ class NewsSlider extends Component {
                 })
             })
 
-            // console.log(news);
             Promise.all(rquests).then(()=>{
                 this.setState({
                     news
@@ -42,7 +40,6 @@ class NewsSlider extends Component {
     }
     
     render(){
-        // console.log(this.state.news)
         return(
             <div><Slider_Template data={this.state.news} type={this.props.type}/></div>
         )

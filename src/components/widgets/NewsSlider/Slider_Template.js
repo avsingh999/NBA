@@ -19,7 +19,7 @@ const SliderTemplate = (props) => {
         case ('fetaured'):
             template = props.data.map((items,i) => {
                 return(<div key={items.id}>
-                {/* {i} */}
+
                     <div className={style.fetaured_item}>
                         <div className={style.fetaured_image}
                             style={{
