@@ -45,8 +45,6 @@ class SignIn extends Component {
     }
 
     updateForm = (element) => {
-        console.log("OOOOOOOOOOOOOOOOOOOO")
-        console.log(element)
         const newFormdata = {
             ...this.state.formdata
         }
@@ -81,7 +79,6 @@ class SignIn extends Component {
             error = !valid ? [valid, message] : error
         }
 
-
         if(element.validation.required){
             const valid = element.value.trim() !=='';
             const message = `${!valid ? 'THis is reuiered':''}`
@@ -90,11 +87,9 @@ class SignIn extends Component {
         return error;
     }
     sumbitButtons = () => (
-
         this.state.loading ? 
         '...loading...'
         :
-        
         <div>
             <button onClick={(event)=>this.sumbitForm(event, false)}>Register </button>
             <button onClick={(event)=>this.sumbitForm(event, true)}>Login </button>
@@ -155,7 +150,8 @@ class SignIn extends Component {
         this.state.registerError !== '' ?
         <div className={style.error}> { this.state.registerError }</div>
         :
-        console.log(this.state.registerError)
+        ''
+
     }
     render(){
         return(

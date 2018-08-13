@@ -2,8 +2,6 @@ import React from 'react'
 import style from '../article.css';
 
 const PostData = (props) => {
-    console.log("*********")
-    console.log(props.data)
     return(
         <div className={style.articlesPostData}>
             <div >

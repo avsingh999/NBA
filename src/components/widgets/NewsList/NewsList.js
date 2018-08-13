@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-
 import { Link } from 'react-router-dom';
 import style from './NewsList.css';
 import Button from '../Button/button.js';
 import CardInfo from '../cardInfo/cardInfo';
 import { firebaseArticles, firebaselooper, firebaseTeams } from '../../../firebase';
-
 class NewsList extends Component {
 
     state = {
@@ -21,6 +18,7 @@ class NewsList extends Component {
     componentWillMount() {
         this.request(this.state.start, this.state.end);
     }
+
     request = (start, end) => {
         if(this.state.teams.length<1){
             firebaseTeams.once('value')
@@ -30,7 +28,6 @@ class NewsList extends Component {
                     teams
                 })
             })
-
         }
 
         firebaseArticles.orderByChild("id").startAt(start).endAt(end).once("value")
@@ -45,7 +42,6 @@ class NewsList extends Component {
         .catch(e => {
             console.log(e)
         })
-
     }
 
     loadmore = () => {
@@ -54,7 +50,6 @@ class NewsList extends Component {
     }
     renderNews = (type) => {
         let template = null;
-
         switch (type) {
             case ("card"):
                template = this.state.item.map((items,i) => (
@@ -72,9 +67,7 @@ class NewsList extends Component {
                             <Link to={`/articles/${items.id}`}>
                             <CardInfo teams={this.state.teams} team={items.team} date={items.date}/>
                                 <h2>{i}{items.title}</h2>
-
                             </Link>
-
                        </div>
                    </div>
                    </CSSTransition>
@@ -84,7 +77,6 @@ class NewsList extends Component {
             case 'main':
                 template = this.state.item.map((items,i) => (
                     <CSSTransition
-                    
                         classNames={{
                             enter:style.NewsList_wrapper,
                             enterActive:style.NewsList_wrapper_enter
@@ -109,25 +101,18 @@ class NewsList extends Component {
                                     <h2>{i}{items.title}</h2>
 
                                  </div>
-                            </div>
-                            
-
+                            </div>                           
                             </Link>
-
                         </div>
                     </div>
                     </CSSTransition>
-                    
                 ))
                 break;
             default:
             template=null;
-                // break;
         }
-        // console.log(template);
         return template;
     }
-
     render(){
         return(
             <div>
@@ -142,7 +127,6 @@ class NewsList extends Component {
                 loadMore={()=>this.loadmore()}
                 cta="load more news"
             />
-
             </div>
         )
     }

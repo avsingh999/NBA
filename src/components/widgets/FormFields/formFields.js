@@ -15,10 +15,8 @@ const FormFields = ({formdata,change,id}) => {
         return errorMessage;
     }
  
-
     const renderTemplate = () => {
         let formTemplate = null;
-        // console.log(formdata.element)
         switch(formdata.element){
             case('input'):
                 formTemplate = (

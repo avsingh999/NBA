@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import FormField from '../widgets/FormFields/formFields';
 import style from './dashboard.css';
 import { Editor } from 'react-draft-wysiwyg';
-import { EditorState, convertFromRaw, convertToRaw } from 'draft-js';
+import { EditorState, convertToRaw } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html'
 import { firebaseTeams, firebaseArticles, firebase } from '../../firebase'
 import Uploader from '../widgets/fileuploader/fileupload';
@@ -77,9 +77,7 @@ class Dashboard extends Component {
     }
 
     updateForm = (element, content='') => {
-        // console.log("________>"+element)
-        console.log("&&&&&&&&&&&&&&&(((((((()))))))))))))))")
-        console.log(this.props.history)
+
         const newFormdata = {
             ...this.state.formdata
         }
@@ -95,16 +93,12 @@ class Dashboard extends Component {
 
         if(element.blur) {
             let validData = this.validate(newElement);
-            console.log(validData)
-            console.log("ME aagya")
-            // console.log("&&&&&&&&&&&&&&&&&&&&&" + content)
             newElement.valid = validData[0];
             newElement.validationMessage = validData[1];
         }
         
         newElement.touched = element.blur;
         newFormdata[element.id] = newElement;
-        // console.log(newFormdata)
         this.setState({
             formdata:newFormdata
         })
@@ -112,10 +106,9 @@ class Dashboard extends Component {
 
     validate = (element) => {
         let error = [true, ''];
-
         if(element.validation.required){
             const valid = element.value.trim() !=='';
-            const message = `${!valid ? 'This is reuiered':''}`
+            const message = `${!valid ? 'This is reuierd':''}`
             error = !valid ? [valid, message] : error
         }
         return error;
@@ -133,7 +126,6 @@ class Dashboard extends Component {
 
         console.log(dataToSumbit)
         if(formIsValid){
-            console.log("POSTTTTTTTtt")
             this.setState({
                 loading:true,
                 postError:''
@@ -151,9 +143,6 @@ class Dashboard extends Component {
                 dataToSumbit['team'] = parseInt(dataToSumbit['team']);
                 firebaseArticles.push(dataToSumbit)
                 .then( article => {
-                    // alert(this.props.history)
-                    // console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-
                     this.props.history.push(`/articles/${article.id}`)
                     alert("SUCCESS")
                 }).catch(e=>{
@@ -167,10 +156,9 @@ class Dashboard extends Component {
         }
         else{
             this.setState({
-                postError:'SOmething went wromg'
+                postError:'Something went wromg'
             })
         }
-        // this.props.history.push(`/articles/5`)
     }
 
     componentDidMount() {
@@ -187,15 +175,11 @@ class Dashboard extends Component {
                 id:childSnapshot.val().id,
                 name: childSnapshot.val().city
             })
-            // console.log(childSnapshot.val())
-
-
         })
         const newFormdata = {...this.state.formdata};
         const newElement = {...newFormdata['team']};
         newElement.config.options = team;
         newFormdata['team'] = newElement;
-        // console.log(newFormdata)
         this.setState({
             formdata:newFormdata
         })
@@ -214,13 +198,11 @@ class Dashboard extends Component {
     sumbitError = () => {
         
         this.state.postError !== '' ?
-        // console.log(this.state.postError)
         alert(this.state.postError)
         :
         ''
     }
     onEditorStateChange = (editorState) => {
-
         let contentState = editorState.getCurrentContent();
         let rawState = convertToRaw(contentState);
         let html = stateToHTML(contentState)
@@ -243,8 +225,7 @@ class Dashboard extends Component {
         return(
             <div className={style.postContainer}>
                 <form onSubmit={this.sumbitForm}>
-                    <h2>Add post</h2>
-                    
+                    <h2>Add post</h2>  
                     <div><Uploader 
                         filename = {(filename) => this.storeFilename(filename)}
                     /> </div>
@@ -263,16 +244,13 @@ class Dashboard extends Component {
                         wrapperClassName="myEditor-wrapper"
                         editorClassName="myEditor-editor"
                         onEditorStateChange={this.onEditorStateChange}
-                    
                     />
                     <FormField
                     id={'team'}
                     formdata={this.state.formdata.team}
                     change={(element)=>this.updateForm(element)}
-                    
                     />
 
-                    {/* <button > back </button> */}
                     { this.sumbitButtons() }
 
                     <div onClick = {()=>this.backfun()} style={{
@@ -280,18 +258,12 @@ class Dashboard extends Component {
                         background:'blue',
                         width:'6%',
                         color:'white'
-
                     }}> BAck</div>
-
                 </form>
-                
                 { this.sumbitError() }
-
             </div>
         )
     }
-
-
 }
 
 export default Dashboard;

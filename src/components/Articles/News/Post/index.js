@@ -1,10 +1,6 @@
 import React, { Component }from 'react';
-
-import axios from 'axios';
-import { URL } from '../../../../config';
 import style from '../../article.css';
 import Header from './header';
-import Body from './body';
 import { firebase, firebaseDB, firebaseTeams, firebaselooper } from '../../../../firebase';
 
 class NewArticle extends Component {
@@ -15,13 +11,9 @@ class NewArticle extends Component {
     }
     
     componentWillMount(){
-        console.log("OOOOOOOOOOOOOOOOOOOOOOOO")
-        console.log(this.props)
         firebaseDB.ref(`articles/${this.props.match.params.id}`).once('value')
         .then((snapshot)=>{
             let article = snapshot.val();
-            // console.log("^^^^^^^^^^^^^^^^^^^^^^^^^")
-            // console.log(snapshot.val())
             firebaseTeams.orderByChild("id").equalTo(article.team).once('value')
             .then((snapshot)=>{
                 const team  = firebaselooper(snapshot);
@@ -35,7 +27,6 @@ class NewArticle extends Component {
        
     }
     getImageURL = (filename) => {
-
         firebase.storage().ref('images')
         .child(filename).getDownloadURL()
         .then( url => {
@@ -45,9 +36,7 @@ class NewArticle extends Component {
         })
     }
 
-
     render(){
-
         const article = this.state.article;
         const team = this.state.team;
         return(
@@ -65,17 +54,14 @@ class NewArticle extends Component {
                             background:`url('${this.state.ImageURL}')`
                         }}
                     >
-                    
                     </div>
                     <div className={style.articleText}
                         dangerouslySetInnerHTML={{
                             __html:article.body
                         }}
                     >
-                        {/* {article.body} */}
                     </div>
                 </div>
-                {/* <Body/> */}
             </div>
         )
     }

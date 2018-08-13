@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import Cardinfo from '../cardInfo/cardInfo';
 
 const VideoTemplate = (props) =>{
-    // console.log("$$$$$$$$$$$$$$$$$")
-    // console.log(props)
     return props.data.map((item,i)=>{
         return(<Link to={`/videos/${item.id}`} key={item.id}>
             <div className={style.videoitem_wrapper}>
@@ -14,7 +12,6 @@ const VideoTemplate = (props) =>{
                             background:`url(/images/videos/${item.image})`
                         }}
                     >
-                        <div></div>
                     </div>
                     <div className={style.right}>
                             <Cardinfo teams={props.teams} team={item.id} date={item.date}></Cardinfo>

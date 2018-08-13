@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {firebase } from '../../../firebase'
-
 import FileUploader from 'react-firebase-file-uploader'
 
 class Uploader extends Component {
@@ -30,9 +29,6 @@ class Uploader extends Component {
     }
 
     handleUploadSuccess = (filename) => {
-        console.log(filename);
-        console.log("&&&&&&&&&&&&&&&&&&&&&")
-
         this.setState({
             name:filename,
             progress:100,

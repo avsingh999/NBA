@@ -3,7 +3,6 @@ import styles from './footer.css'
 import { Link } from "react-router-dom";
 import  { CURRENT_YEAR } from '../../config';
 
-
 const footer = () => {
     return(
         <div className={styles.footer}>

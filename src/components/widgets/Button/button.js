@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-
 import style from '../Button/button.css';
 
 const Button = (props) => {
@@ -14,16 +13,12 @@ const Button = (props) => {
                 {props.cta}
                 </div>
 
-            )
-                
-            
+            )         
             break;
         case 'linkTo':
             template = (
-
                 <Link to={props.linkTo}
                 className={style.blue_button}
-                
                 >
                 {props.cta}
                 </Link>

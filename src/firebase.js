@@ -18,10 +18,8 @@ const firebaseVideos = firebaseDB.ref('videos');
 const firebaselooper = (snapshot) => {
 
     const data = [];
-    // console.log(snapshot.val())
 
     snapshot.forEach((childSnapshot)=> {
-        // console.log("&&&&&&&&&&&7")
         data.push({
             ...childSnapshot.val(),
             id:childSnapshot.key
@@ -29,13 +27,6 @@ const firebaselooper = (snapshot) => {
     });
     return data
 }
-
-firebaseArticles.once('value')
-.then((snapshot)=>{
-    // const articles = firebaselooper(snapshot);
-    console.log(snapshot.val())
-
-})
 
 export {
     firebase,

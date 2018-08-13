@@ -5,11 +5,11 @@ import Routes from "./routes";
 import {firebase} from './firebase'
 
 const App = (props) => {
- return(
-     <BrowserRouter>
-     <Routes {...props}/>
-     </BrowserRouter>
- )
+    return(
+        <BrowserRouter>
+        <Routes {...props}/>
+        </BrowserRouter>
+    )
 }
 
 firebase.auth().onAuthStateChanged((user)=>{

@@ -3,10 +3,8 @@ import FontAwesome from 'react-fontawesome';
 import style from './cardInfo.css';
 
 const CardInfo = (props) => {
-
    const teamName = (teams, team) => {
        let data = teams.find((item)=>{
-        //    console.log("---> "+team+" "+item.id)
            return item.id == team
        })
        if(data){

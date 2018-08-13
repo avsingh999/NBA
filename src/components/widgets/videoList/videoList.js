@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import Button from '../Button/button.js';
 import style from './videoList.css' ;    
 import VideoTemplate from './VideoTemplate';
-import { firebaseArticles, firebaselooper, firebaseTeams, firebaseVideos } from '../../../firebase';
+import { firebaselooper, firebaseTeams, firebaseVideos } from '../../../firebase';
 
 class VideoList extends Component {
-
     state= {
         teams:[],
         videos:[],
@@ -13,6 +12,7 @@ class VideoList extends Component {
         end:this.props.amount+this.props.start,
         amount:this.props.amount
     }
+
     renderTitle = () =>{
         return this.props.title ? <h3><strong>NBA</strong> Videos</h3>:null
     }
@@ -43,7 +43,7 @@ class VideoList extends Component {
                         })
         })
         .catch(e => {
-            console.log(e)
+            alert(e)
         })
 
     }

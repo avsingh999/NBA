@@ -1,4 +1,4 @@
-import React,{ Component } from 'react';
+import React from 'react';
 import {  Switch } from 'react-router-dom';
 import Home from './components/Home/home';
 import Layout from './components/hoc/Layout/layout';
@@ -12,7 +12,6 @@ import PrivateRoutes from './components/AuthRoutes/privateRoutes';
 import PublicRoute from "./components/AuthRoutes/public";
 
 const Routes = (props) => {
-        // console.log(props)
         return(
             <Layout user={props.user}>
                 <Switch>
@@ -26,7 +25,6 @@ const Routes = (props) => {
                 </Switch>
             </Layout>         
         )
-    
 }
 
 export default Routes;

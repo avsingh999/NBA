@@ -1,7 +1,4 @@
 import React, { Component }from 'react';
-
-import axios from 'axios';
-import { URL } from '../../../../config';
 import style from '../../article.css';
 import Header from './header';
 import VideoRelated from '../../../widgets/videoList/VideoRelated/VideoRelatred'
@@ -36,31 +33,16 @@ class VideoArticle extends Component {
             firebaseVideos.orderByChild("team").equalTo(this.state.article.team).limitToFirst(5).once('value')
             .then((snapshot)=>{
                 let related = firebaselooper(snapshot);
-                console.log(related+"************************")
                 this.setState({
                     teams,
                     related
                 })
             })
         })
-        // axios.get(`${URL}/teams`)
-        // .then(response=> {
-        //     let teams = response.data
-        //     axios.get(`${URL}/videos?q=${this.state.team[0].city}&_limit=3`)
-        //     .then(response => {
-        //         this.setState({
-        //             teams,
-        //             related:response.data
-        //         })
-        //     })
-        // })
-    
         }
 
 
     render(){
-        console.log("^^^^^^^^^^^^^^^^^^^^^")
-            console.log(this.state.related)
         const article = this.state.article;
         const team = this.state.team;
         return(

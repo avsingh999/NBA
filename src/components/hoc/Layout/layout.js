@@ -7,7 +7,6 @@ class Layout extends Component{
         showNav:false
     }
     toggleSideNav = (action) =>{
-        // console.log(action);
         this.setState({
             showNav:action
         })
