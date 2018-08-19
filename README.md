@@ -1,5 +1,5 @@
 # NBA
-NBA is simple application in React and Firebase
+NBA is simple news application in React and Firebase
 
 # install
 npm install
