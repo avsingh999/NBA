@@ -1,3 +1,8 @@
 # NBA
+NBA is simple application in React and Firebase
 
-this is simple react on react
+# install
+npm install
+
+# run
+npm start
